@@ -21,11 +21,9 @@ export async function getData() {
     const res = await fetch(`http://localhost:3001/notes/${id}`, {
       method: "DELETE",
     });
-    // if (!res.ok) {
-    //   throw new Error("Failed to delete note");
-    // }
-    // const data = await res.json();
-    // console.log(data);
+    if (!res.ok) {
+      throw new Error("Failed to delete note");
+    }
   }
 
   export async function sendNote(newNote : note) {

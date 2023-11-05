@@ -10,7 +10,7 @@ export interface note {
 
 const AddNote = (props: any) => {
   const [note, setNote] = useState("");
-  const [notes, setNotes] = useState<Note[]>([]); // the type of notes is important
+  const [notes, setNotes] = useState<note[]>([]); // the type of notes is important
 
   const addNote = (e: any) => {
     e.preventDefault();
@@ -20,14 +20,10 @@ const AddNote = (props: any) => {
       important: false,
     };
 
-    // useEffect(() => {
-    //   // setNotes(props.notes);
-    // }, [newNote]);
-
     sendNote(newNote);
     setNotes([...props.notes, newNote]);
+    console.log("Notes : ", notes);
     setNote(""); // Clear the input field after adding the note
-    console.log("Note added:", note);
   };
 
   return (

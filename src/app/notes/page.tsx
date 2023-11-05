@@ -14,13 +14,18 @@ export interface notes {
 
 export default async function Page() {
   let notes = await getData();
-  console.log(notes);
+  // const {notes} = useContext(postContext)
+  // console.log(notes);
 
   return (
     <>
       <div className="bg-gray-700 min-h-screen">
+        <br></br>
         They say :
+        <br></br>
+        <br></br>
         <Note notes={notes} />
+        <br></br>
         <Addnote notes={notes} />
       </div>
     </>
