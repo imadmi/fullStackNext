@@ -1,16 +1,34 @@
-'use client';
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
+import { sendNote } from "./fetching";
 
-const AddNote = () => {
+export interface note {
+  id: number;
+  content: string;
+  important: boolean;
+}
+
+const AddNote = (props: any) => {
   const [note, setNote] = useState("");
-  
-  const addNote = (e) => {
+  const [notes, setNotes] = useState<Note[]>([]); // the type of notes is important
+
+  const addNote = (e: any) => {
     e.preventDefault();
-    // Here, you can implement the logic to add the note to your data source.
-    // For example, you can use a state management library or an API request to save the note.
-    console.log("Note added:", note);
+    const newNote: note = {
+      id: 0, // This will be set by the server
+      content: note,
+      important: false,
+    };
+
+    // useEffect(() => {
+    //   // setNotes(props.notes);
+    // }, [newNote]);
+
+    sendNote(newNote);
+    setNotes([...props.notes, newNote]);
     setNote(""); // Clear the input field after adding the note
-  }
+    console.log("Note added:", note);
+  };
 
   return (
     <div>
@@ -24,6 +42,6 @@ const AddNote = () => {
       </form>
     </div>
   );
-}
+};
 
 export default AddNote;

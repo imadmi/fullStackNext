@@ -1,39 +1,27 @@
 // "use client";
 
+import axios from "axios";
 import React from "react";
-import { getData } from "../components/fetching";
+import { getData, deleteNote } from "../components/fetching";
 import Addnote from "../components/addnote";
+import Note from "../components/note";
 
-interface notes {
+export interface notes {
   id: number;
   content: string;
   important: boolean;
 }
 
-export function Note(props: any) {
-  return (
-    <>
-      <ul>
-        {props.notes.map((note: note) => {return (
-          <>
-          <li key={note.id}>- {note.content} .  <button> delete note</button></li>
-          </>
-        );}
-        )}
-      </ul>
-    </>
-  );
-}
-
 export default async function Page() {
-  const notes: notes[] = await getData();
+  let notes = await getData();
+  console.log(notes);
 
   return (
     <>
       <div className="bg-gray-700 min-h-screen">
         They say :
         <Note notes={notes} />
-        <Addnote />
+        <Addnote notes={notes} />
       </div>
     </>
   );
