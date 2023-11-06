@@ -13,7 +13,7 @@ interface MyContextType {
   setSomeData: (data: note[]) => void;
 }
 
-const MyContext = createContext<MyContextType | undefined>(undefined);
+const MyContext = createContext<MyContextType>({} as MyContextType);
 
 export function useMyContext() {
   const context = useContext(MyContext);

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { sendNote } from "./fetching";
-import { useMyContext } from '../context/store';
+import { useMyContext } from "../context/store";
 
 export interface note {
   id: number;
@@ -17,18 +17,23 @@ const AddNote = (props: any) => {
     if (input.length === 0) {
       return input;
     }
-  
-    const firstLetter = input[0].toUpperCase();
-    const restOfTheString = input.slice(1);
-  
+    const firstLetter : string = input[0].toUpperCase();
+    const restOfTheString : string = input.slice(1);
     return firstLetter + restOfTheString;
   }
 
-  
+  function generateUniqueID(someData: note[]): number {
+    let newID : number = 1;
+    while (someData.some((note) => note.id === newID)) {
+      newID++;
+    }
+    return newID;
+  }
+
   const addNote = (e: any) => {
     e.preventDefault();
     const newNote: note = {
-      id: 0, // This will be set by the server
+      id: generateUniqueID(someData),
       content: capitalizer(note),
       important: false,
     };

@@ -14,7 +14,9 @@ export interface note {
 }
 
 export default function Page() {
+
   const { someData , setSomeData } = useMyContext();
+
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -13,7 +13,7 @@ export default function Note() {
   const { someData , setSomeData } = useMyContext();
 
   const DeleteData = (id : number) => {
-    const newData = someData.filter((item) => item.id !== id);
+    const newData = someData.filter((item : note) => item.id !== id);
     deleteNote(id)
     setSomeData(newData);
   }
@@ -22,7 +22,7 @@ export default function Note() {
     <ul className="text-white">
       {someData.map((note) => (
         <li key={note.id} className="mb-4 flex items-center">
-          <span className="text-xl">{note.content}</span>
+          <span className="text-xl"> - {note.content} </span>
           <button
             onClick={() => DeleteData(note.id)}
             className="ml-4 text-red-500 hover:text-red-700 focus:outline-none"
