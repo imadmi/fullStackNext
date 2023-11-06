@@ -12,18 +12,20 @@ export interface note {
 export default function Note() {
   const { someData } = useMyContext();
 
+
   return (
-    <>
-      <ul>
-        {someData.map((note: note) => (
-          <li key={note.id}>
-            - {note.content} .
-            <button onClick={() => deleteNote(note.id)} className="text-white">
-              Delete note
-            </button>
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul className="text-white">
+      {someData.map((note) => (
+        <li key={note.id} className="mb-4 flex items-center">
+          <span className="text-xl">{note.content}</span>
+          <button
+            onClick={() => deleteNote(note.id)}
+            className="ml-4 text-red-500 hover:text-red-700 focus:outline-none"
+          >
+            Delete note
+          </button>
+        </li>
+      ))}
+    </ul>
   );
 }

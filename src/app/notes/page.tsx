@@ -20,11 +20,10 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch data using your getNotes function or any data fetching method
         const data = await getNotes();
         setSomeData(data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -32,16 +31,14 @@ export default function Page() {
   }, [someData]);
 
   return (
-    <>
-      <div className="bg-gray-700 min-h-screen">
-        <br></br>
-        They say :
-        <br></br>
-        <br></br>
+    <div className="bg-gray-700 min-h-screen p-6 text-white">
+      <p className="text-3xl">They say:</p>
+      <div className="my-4">
         <Note />
-        <br></br>
+      </div>
+      <div className="my-4">
         <Addnote />
       </div>
-    </>
+    </div>
   );
 }

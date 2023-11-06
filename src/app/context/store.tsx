@@ -31,8 +31,6 @@ export function MyContextProvider({ children }: { children: ReactNode }) {
   //   console.log("store : data : ", data);
     // setSomeData(data);
   // };
-  // someData = [{ id: 1, content: "hello", important: true }];
-  // You can provide any initial data or functions here
 
   return (
     // <MyContext.Provider value={{ someData, setSomeData : updateSomeData}}>
