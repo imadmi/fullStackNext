@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { sendNote } from "./fetching";
+import { useMyContext } from '../context/store';
 
 export interface note {
   id: number;
@@ -10,7 +11,8 @@ export interface note {
 
 const AddNote = (props: any) => {
   const [note, setNote] = useState("");
-  const [notes, setNotes] = useState<note[]>([]); // the type of notes is important
+  const { someData, setSomeData } = useMyContext();
+
 
   const addNote = (e: any) => {
     e.preventDefault();
@@ -20,10 +22,9 @@ const AddNote = (props: any) => {
       important: false,
     };
 
+    () => setSomeData([...someData, newNote]);
+    () => setNote(""); // Clear the input field after adding the note
     sendNote(newNote);
-    setNotes([...props.notes, newNote]);
-    console.log("Notes : ", notes);
-    setNote(""); // Clear the input field after adding the note
   };
 
   return (

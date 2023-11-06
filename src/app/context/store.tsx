@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  Dispatch,
-  SetStateAction,
-  useState,
-} from "react";
+import { createContext, useContext, useState , ReactNode} from "react";
 
 export interface note {
   id: number;
@@ -14,16 +8,34 @@ export interface note {
   important: boolean;
 }
 
-const MyContext = createContext();
+interface MyContextType {
+  someData: note[];
+  setSomeData: (data: note[]) => void;
+}
 
-export const useMyContext = () => useContext(MyContext);
 
-export function MyContextProvider({ children }) {
-  const [someData, setSomeData] = useState<note[]>([]);
+const MyContext = createContext<MyContextType | undefined>(undefined);
 
+export function useMyContext() {
+  const context = useContext(MyContext);
+  if (context === undefined) {
+    throw new Error('useMyContext must be used within a MyContextProvider');
+  }
+  return context;
+}
+
+export function MyContextProvider({ children }: { children: ReactNode }) {
+  let [someData, setSomeData] = useState<note[]>([]);
+
+  // const updateSomeData = (data: Note[]) => {
+  //   console.log("store : data : ", data);
+    // setSomeData(data);
+  // };
+  // someData = [{ id: 1, content: "hello", important: true }];
   // You can provide any initial data or functions here
 
   return (
+    // <MyContext.Provider value={{ someData, setSomeData : updateSomeData}}>
     <MyContext.Provider value={{ someData, setSomeData }}>
       {children}
     </MyContext.Provider>

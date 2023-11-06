@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { deleteNote } from "./fetching";
+import { useMyContext } from "../context/store";
 
 export interface note {
   id: number;
@@ -8,11 +9,13 @@ export interface note {
   important: boolean;
 }
 
-export default function Note(props: any) {
+export default function Note() {
+  const { someData } = useMyContext();
+
   return (
     <>
       <ul>
-        {props.notes.map((note: note) => (
+        {someData.map((note: note) => (
           <li key={note.id}>
             - {note.content} .
             <button onClick={() => deleteNote(note.id)} className="text-white">

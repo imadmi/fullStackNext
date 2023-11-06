@@ -1,3 +1,4 @@
+// 'use client';
 import React from "react";
 
 export interface note {
@@ -6,7 +7,7 @@ export interface note {
     important: boolean;
   }
 
-export async function getData() {
+export async function getNotes() {
     const res = await fetch("http://localhost:3001/notes", {cache : "no-store"});
     if (!res.ok) {
       throw new Error("Failed to fetch data");
