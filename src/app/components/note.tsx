@@ -10,8 +10,13 @@ export interface note {
 }
 
 export default function Note() {
-  const { someData } = useMyContext();
+  const { someData , setSomeData } = useMyContext();
 
+  const DeleteData = (id : number) => {
+    const newData = someData.filter((item) => item.id !== id);
+    deleteNote(id)
+    setSomeData(newData);
+  }
 
   return (
     <ul className="text-white">
@@ -19,7 +24,7 @@ export default function Note() {
         <li key={note.id} className="mb-4 flex items-center">
           <span className="text-xl">{note.content}</span>
           <button
-            onClick={() => deleteNote(note.id)}
+            onClick={() => DeleteData(note.id)}
             className="ml-4 text-red-500 hover:text-red-700 focus:outline-none"
           >
             Delete note

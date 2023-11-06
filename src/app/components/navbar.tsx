@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <nav className="bg-gray-900 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white text-2xl font-bold">Navbar mli7a</div>
+        <div className="text-white text-2xl font-bold">Navbar</div>
         <ul className="flex space-x-4">
           <li>
             <Link href="/" className="text-white hover:underline">

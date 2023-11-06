@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { getNotes, deleteNote } from "../components/fetching";
@@ -15,8 +14,7 @@ export interface note {
 }
 
 export default function Page() {
-  const { someData, setSomeData } = useMyContext();
-
+  const { someData , setSomeData } = useMyContext();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,7 +26,7 @@ export default function Page() {
     };
 
     fetchData();
-  }, [someData]);
+  }, []);
 
   return (
     <div className="bg-gray-700 min-h-screen p-6 text-white">
